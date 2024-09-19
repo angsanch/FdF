@@ -1,0 +1,7 @@
+[submodule "libft"]
+	path = libft
+	url = git@github.com:angsanch/c_lib.git
+	branch = 42
+[submodule "minilibx"]
+	path = minilibx
+	url = https://github.com/42Paris/minilibx-linux.git

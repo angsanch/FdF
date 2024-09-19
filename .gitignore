@@ -1,0 +1,15 @@
+*.out
+*.o
+*.swp
+*.a
+\#*\#
+*~
+.vscode
+
+include/basic.h
+include/engine.h
+include/linked_list.h
+include/macros.h
+include/my_printf.h
+
+fdf
