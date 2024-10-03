@@ -6,7 +6,7 @@
 #    By: angsanch <angsanch@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/13 18:29:24 by angsanch          #+#    #+#              #
-#    Updated: 2024/09/19 23:22:38 by angsanch         ###   ########.fr        #
+#    Updated: 2024/10/04 00:06:41 by angsanch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ include vars.mk
 O_FILES = $(C_FILES:.c=.o)
 
 $(NAME): $(LIBS) $(O_FILES)
-	$(CC) $(CFLAGS) -o $(NAME) $(O_FILES) $(LIBS)
+	$(CC) $(CFLAGS) -o $(NAME) $(O_FILES) $(LIBS) $(LINKS)
 
 build: $(NAME)
 
