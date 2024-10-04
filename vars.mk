@@ -3,7 +3,7 @@ LIBS	=libft/libft.a minilibx/build/libmlx42.a
 LINKS	=-ldl -lglfw -pthread -lm
 CFLAGS	=-Wall -Werror -Wextra
 NAME	=fdf
-C_FILES	=
+C_FILES	=src/main.c \
 
 libft/libft.a:
 	make -C libft
