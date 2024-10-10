@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 14:06:59 by angsanch          #+#    #+#             */
-/*   Updated: 2024/10/04 04:53:59 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/10/11 01:15:19 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,13 @@ typedef struct web
 {
 	size_t	nodes;
 	t_node	*node;
-	uint8_t	*matrix;
+	t_list	connection;
+	size_t	changes;
 }	t_web;
+
+int		node_initialize(t_node *node);
+void	node_delete(t_node *node);
+t_web	*web_create(size_t nodes);
+void	web_destroy(t_web *w);
 
 #endif

@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   node.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angsanch <angsanch@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/30 14:06:28 by angsanch          #+#    #+#             */
-/*   Updated: 2024/10/11 00:02:50 by angsanch         ###   ########.fr       */
+/*   Created: 2024/10/11 00:03:42 by angsanch          #+#    #+#             */
+/*   Updated: 2024/10/11 01:06:27 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../../include/fdf.h"
 
-int	main(void)
+int	node_initialize(t_node *node)
 {
-	
+	my_memset(node, 0, sizeof(t_node));
+	node->color.value = 0xffffffff;
+	return (1);
+}
 
-	mlx_set_setting(MLX_MAXIMIZED, true);
-	mlx_t* mlx = mlx_init(1200, 600, "42Balls", true);
-	(void)mlx;
-	uint32_t a = 0xaabbccdd;
-	my_showmem((char *)&a, 4);
-	while (1);
+void	node_delete(t_node __attribute__((unused))*node)
+{
 }

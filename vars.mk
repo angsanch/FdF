@@ -4,6 +4,7 @@ LINKS	=-ldl -lglfw -pthread -lm
 CFLAGS	=-Wall -Werror -Wextra
 NAME	=fdf
 C_FILES	=src/main.c \
+			src/tools/node.c \
 
 libft/libft.a:
 	make -C libft
