@@ -4,6 +4,7 @@ LINKS	=-ldl -lglfw -pthread -lm
 CFLAGS	=-Wall -Werror -Wextra
 NAME	=fdf
 C_FILES	=src/main.c \
+			src/parsing/map.c \
 			src/tools/node.c \
 
 libft/libft.a:
