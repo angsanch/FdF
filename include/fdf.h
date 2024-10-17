@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 14:06:59 by angsanch          #+#    #+#             */
-/*   Updated: 2024/10/11 01:57:40 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/10/17 05:57:27 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ union u_color
 
 typedef struct node
 {
+	ssize_t			x;
+	ssize_t			y;
+	ssize_t			z;
 	union u_color	color;
 }	t_node;
 
@@ -47,6 +50,7 @@ typedef struct web
 }	t_web;
 
 t_web	*map_to_web(char *path);
+int		apply_map_lines(t_web *web, t_list *lines, size_t width);
 
 int		node_initialize(t_node *node);
 void	node_delete(t_node *node);

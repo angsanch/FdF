@@ -1,11 +1,13 @@
 CC		=gcc
 LIBS	=libft/libft.a minilibx/build/libmlx42.a
 LINKS	=-ldl -lglfw -pthread -lm
-CFLAGS	=-Wall -Werror -Wextra
+CFLAGS	=-Wall -Werror -Wextra -g
 NAME	=fdf
 C_FILES	=src/main.c \
 			src/parsing/map.c \
+			src/parsing/map_apply.c \
 			src/tools/node.c \
+			src/tools/web.c \
 
 libft/libft.a:
 	make -C libft
