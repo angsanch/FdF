@@ -22,6 +22,7 @@ static int	read_lines(t_list *lines, int fd)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
+		my_strtrim(line);
 		splited = my_split(line, ' ');
 		free(line);
 		if (splited == NULL || !list_append(lines, splited))

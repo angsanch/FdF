@@ -12,10 +12,11 @@
 
 #include "../include/fdf.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	t_web	*web = map_to_web("maps/mars.fdf");
+	t_web	*web = map_to_web(argv[1]);
 
+	(void)argc;
 	if (web == NULL)
 		return (84);
 	web_destroy(web);
