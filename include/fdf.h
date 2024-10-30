@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 14:06:59 by angsanch          #+#    #+#             */
-/*   Updated: 2024/10/17 05:57:27 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/10/30 04:18:36 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ typedef struct node
 	ssize_t			z;
 	union u_color	color;
 }	t_node;
+
+typedef struct connection
+{
+	size_t	a;
+	size_t	b;
+}	t_con;
 
 typedef struct web
 {

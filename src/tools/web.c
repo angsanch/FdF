@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 00:10:19 by angsanch          #+#    #+#             */
-/*   Updated: 2024/10/11 01:05:38 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/10/30 04:31:27 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_web	*web_create(size_t nodes)
 		free(w->node);
 		return (NULL);
 	}
-	list_initialize(&w->connection, NULL);
+	list_initialize(&w->connection, &free);
 	w->nodes = 0;
 	while (w->nodes < nodes)
 	{
@@ -51,6 +51,7 @@ void	web_destroy(t_web *w)
 		node_delete(&w->node[i]);
 		i ++;
 	}
+	list_delete(&w->connection);
 	free(w->node);
 	free(w);
 }

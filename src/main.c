@@ -6,16 +6,24 @@
 /*   By: angsanch <angsanch@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 14:06:28 by angsanch          #+#    #+#             */
-/*   Updated: 2024/10/17 06:20:23 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/10/30 04:33:48 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
+static void print_con(void *con, void __attribute__((unused))*nul)
+{
+	t_con *c = con;
+	my_printf("%zd %zd\n", c->a,  c->b);
+}
+
 int	main(int argc, char **argv)
 {
 	t_web	*web = map_to_web(argv[1]);
 
+	list_iter(&web->connection, &print_con, NULL);
+	my_printf("%zd\n", web->connection.first);
 	(void)argc;
 	if (web == NULL)
 		return (84);

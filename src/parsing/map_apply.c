@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 05:36:23 by angsanch          #+#    #+#             */
-/*   Updated: 2024/10/17 06:25:51 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/10/30 04:34:39 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static int	parse_node(t_node *node, size_t x, size_t y, char *values)
 	else
 		return (0);
 	node->color.alpha = 0xff;
-	printf("%5zd %5zd %3zd %8x\n", node->x, node->y, node->z, node->color.value);
 	return (1);
 }
 
@@ -45,6 +44,48 @@ static int	apply_line(t_web *web, char **line, size_t width, size_t y)
 		if (!parse_node(&web->node[(y * width) + x], x, y, line[x]))
 			return (0);
 		x ++;
+	}
+	return (1);
+}
+
+static int	add_connection(t_web *web, size_t a, size_t b)
+{
+	t_con	*c;
+
+	c = malloc(sizeof(t_con) * 1);
+	if (c == NULL)
+		return (0);
+	c->a = a;
+	c->b = b;
+	if (list_push(&web->connection, c))
+		return (1);
+	free(c);
+	return (0);
+}
+
+static int	create_connections(t_web *web, size_t width, size_t height)
+{
+	size_t	x;
+	size_t	y;
+	size_t	current;
+
+	y = 0;
+	current = 0;
+	while (y < height)
+	{
+		x = 0;
+		while (x < width)
+		{
+			if (x + 1 < width)
+				if (!add_connection(web, current, current + 1))
+					return (0);
+			if (y + 1 < width)
+				if (!add_connection(web, current, current + width))
+					return (0);
+			current ++;
+			x ++;
+		}
+		y ++;
 	}
 	return (1);
 }
@@ -70,5 +111,5 @@ int	apply_map_lines(t_web *web, t_list *line_list, size_t width)
 		y ++;
 	}
 	free(lines);
-	return (status);
+	return (status && create_connections(web, width, y));
 }
