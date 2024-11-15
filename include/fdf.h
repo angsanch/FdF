@@ -6,32 +6,20 @@
 /*   By: angsanch <angsanch@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 14:06:59 by angsanch          #+#    #+#             */
-/*   Updated: 2024/10/30 04:18:36 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/11/15 03:06:49 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include <math.h>
-# include <stdint.h>
-
 # include "basic.h"
 # include "linked_list.h"
 # include "my_printf.h"
-# include "../minilibx/include/MLX42/MLX42.h"
+# include "engine.h"
 
-union u_color
-{
-	uint32_t	value;
-	struct
-	{
-		uint8_t	blue;
-		uint8_t	green;
-		uint8_t	red;
-		uint8_t	alpha;
-	};
-};
+# include <math.h>
+# include <stdint.h>
 
 typedef struct node
 {
