@@ -6,15 +6,68 @@
 /*   By: angsanch <angsanch@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 04:31:41 by angsanch          #+#    #+#             */
-/*   Updated: 2024/11/15 05:04:36 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/11/19 04:13:24 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/engine.h"
 
-void	engine_hook(t_engine *engine, void (*func)(t_engine *))
+void	engine_mlx_scroll(double xdelta, double ydelta, void *param)
 {
-	static void	(*hookers[])(mlx_t *mlx, void *, void *param) = {NULL,
-		&mlx_scroll_hook, &mlx_close_hook, &mlx_resize_hook, &mlx_key_hook,
-		&mlx_loop_hook};
+	t_hdata		hd;
+	t_engine	*engine;
+
+	engine = param;
+	my_memset(&hd, 0, sizeof(t_hdata));
+	hd.xdelta = xdelta;
+	hd.ydelta = ydelta;
+	hd.kind = SCROLL;
+	run_hooks(engine, &hd);
+}
+
+void	engine_mlx_close(void *param)
+{
+	t_hdata		hd;
+	t_engine	*engine;
+
+	engine = param;
+	my_memset(&hd, 0, sizeof(t_hdata));
+	hd.kind = CLOSE;
+	run_hooks(engine, &hd);
+}
+
+void	engine_mlx_resize(int32_t width, int32_t height, void *param)
+{
+	t_hdata		hd;
+	t_engine	*engine;
+
+	engine = param;
+	my_memset(&hd, 0, sizeof(t_hdata));
+	hd.width = width;
+	hd.height = height;
+	hd.kind = RESIZE;
+	run_hooks(engine, &hd);
+}
+
+void	engine_mlx_key(mlx_key_data_t key_data, void *param)
+{
+	t_hdata		hd;
+	t_engine	*engine;
+
+	engine = param;
+	my_memset(&hd, 0, sizeof(t_hdata));
+	hd.key_data = key_data;
+	hd.kind = KEY;
+	run_hooks(engine, &hd);
+}
+
+void	engine_mlx_loop(void *param)
+{
+	t_hdata		hd;
+	t_engine	*engine;
+
+	engine = param;
+	my_memset(&hd, 0, sizeof(t_hdata));
+	hd.kind = LOOP;
+	run_hooks(engine, &hd);
 }
