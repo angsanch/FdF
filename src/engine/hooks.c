@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 04:31:41 by angsanch          #+#    #+#             */
-/*   Updated: 2024/11/19 04:13:24 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/11/26 14:07:52 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	engine_mlx_resize(int32_t width, int32_t height, void *param)
 	my_memset(&hd, 0, sizeof(t_hdata));
 	hd.width = width;
 	hd.height = height;
+	engine->width = width;
+	engine->height = height;
 	hd.kind = RESIZE;
 	run_hooks(engine, &hd);
 }

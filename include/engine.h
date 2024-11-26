@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 03:16:46 by angsanch          #+#    #+#             */
-/*   Updated: 2024/11/19 04:36:46 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/11/26 13:51:25 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ typedef struct engine
 	mlx_image_t	*buffer;
 	mlx_image_t	*current;
 	t_list		hook;
-	size_t		width;
-	size_t		height;
+	uint32_t	width;
+	uint32_t	height;
 }	t_engine;
 
 t_engine	*engine_init(size_t width, size_t height, char *title);
