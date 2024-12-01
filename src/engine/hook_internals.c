@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 05:20:47 by angsanch          #+#    #+#             */
-/*   Updated: 2024/11/19 04:21:06 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/12/01 02:50:07 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	run_hook(void *internals_void, void *data_void)
 	hd = data_void;
 	if (!(hi->kind & hd->kind))
 		return ;
-	hi->func(hd->kind, hd, hi->param);
+	hi->func(hi->kind, hd, hi->param);
 }
 
 void	run_hooks(t_engine *engine, t_hdata *hd)
@@ -60,5 +60,7 @@ int	initialize_hooks(t_engine *engine)
 	mlx_close_hook(engine->window, &engine_mlx_close, engine);
 	mlx_resize_hook(engine->window, &engine_mlx_resize, engine);
 	mlx_key_hook(engine->window, &engine_mlx_key, engine);
+	mlx_mouse_hook(engine->window, &engine_mlx_bmouse, engine);
+	mlx_cursor_hook(engine->window, &engine_mlx_mmouse, engine);
 	return (mlx_loop_hook(engine->window, &engine_mlx_loop, engine) == true);
 }

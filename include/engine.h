@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 03:16:46 by angsanch          #+#    #+#             */
-/*   Updated: 2024/11/26 13:51:25 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/12/01 02:54:32 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,30 @@ union u_color
 	};
 };
 
-enum e_hooks
+typedef enum e_hooks
 {
-	NON		= 0b00000,
-	SCROLL	= 0b00001,
-	CLOSE	= 0b00010,
-	RESIZE	= 0b00100,
-	KEY		= 0b01000,
-	LOOP	= 0b10000,
+	NON		= 0b0000000,
+	SCROLL	= 0b0000001,
+	CLOSE	= 0b0000010,
+	RESIZE	= 0b0000100,
+	KEY		= 0b0001000,
+	LOOP	= 0b0010000,
+	MOUSE	= 0b0100000,
+	CURSOR	= 0b1000000,
+}	t_hkind;
+
+struct	s_pos2d
+{
+	double	x;
+	double	y;
 };
 
-typedef uint8_t	t_hkind;
+struct s_mouse
+{
+	enum mouse_key		button;
+	enum action			action;
+	enum modifier_key	modifier_key;
+};
 
 typedef struct hook_data
 {
@@ -51,6 +64,9 @@ typedef struct hook_data
 	int32_t			height;
 	mlx_key_data_t	key_data;
 	t_hkind			kind;
+	struct s_pos2d	pmouse;
+	struct s_pos2d	mouse;
+	struct s_mouse	mouse_press;
 }	t_hdata;
 
 typedef void	(*t_hfunc)(t_hkind kind, t_hdata *data, void *param);
@@ -88,6 +104,9 @@ void		engine_mlx_scroll(double xdelta, double ydelta, void *param);
 void		engine_mlx_close(void *param);
 void		engine_mlx_resize(int32_t width, int32_t height, void *param);
 void		engine_mlx_key(mlx_key_data_t key_data, void *param);
+void		engine_mlx_bmouse(enum mouse_key button, enum action act,
+				enum modifier_key mod, void *param);
+void		engine_mlx_mmouse(double x, double y, void *param);
 void		engine_mlx_loop(void *param);
 
 #endif

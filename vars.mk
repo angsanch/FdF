@@ -11,6 +11,7 @@ C_FILES	=src/main.c \
 			src/engine/engine_tools.c \
 			src/engine/hook_internals.c \
 			src/engine/hooks.c \
+			src/engine/hooks2.c \
 
 libft/libft.a:
 	make -C libft
