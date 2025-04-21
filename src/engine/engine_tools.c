@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 03:23:38 by angsanch          #+#    #+#             */
-/*   Updated: 2024/11/19 04:27:41 by angsanch         ###   ########.fr       */
+/*   Updated: 2025/04/21 18:09:04 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,11 @@ void	engine_stop(t_engine *engine)
 	mlx_terminate(engine->window);
 	list_delete(&engine->hook);
 	free(engine);
+}
+
+void	engine_close(t_engine *engine)
+{
+	mlx_close_window(engine->window);
 }
 
 int	engine_hook(t_engine *engine, t_hinternal *hi)

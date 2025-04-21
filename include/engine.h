@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 03:16:46 by angsanch          #+#    #+#             */
-/*   Updated: 2024/12/01 02:54:32 by angsanch         ###   ########.fr       */
+/*   Updated: 2025/04/21 18:11:33 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ typedef struct engine
 
 t_engine	*engine_init(size_t width, size_t height, char *title);
 void		engine_stop(t_engine *engine);
+void		engine_close(t_engine *engine);
 
 int			engine_hook(t_engine *engine, t_hinternal *hi);
 
