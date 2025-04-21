@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 03:23:38 by angsanch          #+#    #+#             */
-/*   Updated: 2025/04/21 18:09:04 by angsanch         ###   ########.fr       */
+/*   Updated: 2025/04/21 19:51:32 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,13 @@ t_engine	*engine_init(size_t width, size_t height, char *title)
 	engine->window = mlx_init(width, height, title, true);
 	engine->width = width;
 	engine->height = height;
-	engine->buffer = mlx_new_image(engine->window, width, height);
-	if (engine->buffer == NULL || !initialize_hooks(engine))
+	engine->image = mlx_new_image(engine->window, width, height);
+	if (engine->image == NULL || !initialize_hooks(engine))
 	{
 		engine_stop(engine);
 		return (NULL);
 	}
+	mlx_image_to_window(engine->window, engine->image, 0, 0);
 	return (engine);
 }
 
@@ -35,8 +36,7 @@ void	engine_stop(t_engine *engine)
 {
 	if (engine == NULL)
 		return ;
-	mlx_delete_image(engine->window, engine->buffer);
-	mlx_delete_image(engine->window, engine->current);
+	mlx_delete_image(engine->window, engine->image);
 	mlx_close_window(engine->window);
 	mlx_terminate(engine->window);
 	list_delete(&engine->hook);

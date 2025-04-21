@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 03:16:46 by angsanch          #+#    #+#             */
-/*   Updated: 2025/04/21 18:11:33 by angsanch         ###   ########.fr       */
+/*   Updated: 2025/04/21 19:53:37 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ union u_color
 	uint32_t	value;
 	struct
 	{
-		uint8_t	blue;
+		uint8_t red;
 		uint8_t	green;
-		uint8_t	red;
+		uint8_t	blue;
 		uint8_t	alpha;
 	};
 };
@@ -82,8 +82,7 @@ typedef struct hook_internals
 typedef struct engine
 {
 	mlx_t		*window;
-	mlx_image_t	*buffer;
-	mlx_image_t	*current;
+	mlx_image_t	*image;
 	t_list		hook;
 	uint32_t	width;
 	uint32_t	height;
@@ -92,6 +91,8 @@ typedef struct engine
 t_engine	*engine_init(size_t width, size_t height, char *title);
 void		engine_stop(t_engine *engine);
 void		engine_close(t_engine *engine);
+
+void		engine_background(t_engine *engine, union u_color color);
 
 int			engine_hook(t_engine *engine, t_hinternal *hi);
 

@@ -1,7 +1,7 @@
 CC		=gcc
 LIBS	=libft/libft.a minilibx/build/libmlx42.a
 LINKS	=-ldl -lglfw -pthread -lm
-CFLAGS	=-Wall -Werror -Wextra
+CFLAGS	=-Wall -Werror -Wextra -Iinclude
 NAME	=fdf
 C_FILES	=src/main.c \
 			src/parsing/map.c \
@@ -12,6 +12,7 @@ C_FILES	=src/main.c \
 			src/engine/hook_internals.c \
 			src/engine/hooks.c \
 			src/engine/hooks2.c \
+			src/engine/graphic/background.c \
 
 libft/libft.a:
 	make -C libft

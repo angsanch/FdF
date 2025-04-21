@@ -5,6 +5,9 @@
 \#*\#
 *~
 .vscode
+compile_commands.json
+notes.txt
+.cache
 
 include/basic.h
 include/linked_list.h
