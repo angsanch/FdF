@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 03:16:46 by angsanch          #+#    #+#             */
-/*   Updated: 2025/04/21 19:53:37 by angsanch         ###   ########.fr       */
+/*   Updated: 2025/04/22 00:01:15 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ union u_color
 	uint32_t	value;
 	struct
 	{
-		uint8_t red;
+		uint8_t	red;
 		uint8_t	green;
 		uint8_t	blue;
 		uint8_t	alpha;
@@ -48,6 +48,13 @@ struct	s_pos2d
 	double	x;
 	double	y;
 };
+
+typedef struct point_container
+{
+	int				x;
+	int				y;
+	union u_color	color;
+}	t_point;
 
 struct s_mouse
 {
@@ -93,6 +100,7 @@ void		engine_stop(t_engine *engine);
 void		engine_close(t_engine *engine);
 
 void		engine_background(t_engine *engine, union u_color color);
+void		engine_draw_line(t_engine *engine, t_point a, t_point b);
 
 int			engine_hook(t_engine *engine, t_hinternal *hi);
 
