@@ -6,11 +6,46 @@
 /*   By: angsanch <angsanch@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 01:17:26 by angsanch          #+#    #+#             */
-/*   Updated: 2025/04/22 05:00:08 by angsanch         ###   ########.fr       */
+/*   Updated: 2025/04/22 08:21:29 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+static t_point	process_node(t_node *n, t_display *d)
+{
+	const double	cos30 = 0.866;
+	const double	sin30 = 0.5;
+
+	return ((t_point){
+		(cos30 * n->x - cos30 * n->y) * d->plane_distance + d->x_offset,
+		(sin30 * n->x + sin30 * n->y - n->z * d->z_mod) * \
+			d->plane_distance + d->y_offset,
+		n->color,
+	});
+}
+
+static void	draw_connection(t_con *con, t_engine *e)
+{
+	t_node	*n[2];
+	t_data	*d;
+
+	d = e->data;
+	if (con->a >= d->web->nodes || con->b >= d->web->nodes)
+		return;
+	n[0] = &d->web->node[con->a];
+	n[1] = &d->web->node[con->b];
+	engine_draw_line(e, process_node(n[0], &d->disp),
+		process_node(n[1], &d->disp));
+}
+
+static void	draw_web(t_engine *e)
+{
+	t_data	*d;
+
+	d = e->data;
+	list_iter(&d->web->connection, (void *)&draw_connection, e);
+}
 
 void	base_loop(t_hkind kind, t_hdata *data, void *param)
 {
@@ -25,7 +60,5 @@ void	base_loop(t_hkind kind, t_hdata *data, void *param)
 		return ;
 	engine_background(e,
 		(union u_color){.red = 0, .green = 0, .blue = 0, .alpha = 0xff});
+	draw_web(e);
 }
-
-	/*engine_draw_line(e, (t_point){0, 0, {0}},
-		(t_point){d->mx, d->my, {0xffffffff}});*/

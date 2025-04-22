@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 04:41:53 by angsanch          #+#    #+#             */
-/*   Updated: 2025/04/22 04:47:46 by angsanch         ###   ########.fr       */
+/*   Updated: 2025/04/22 07:23:52 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ t_data	*create_data(char *path)
 	{
 		return (NULL);
 	}
-	data->disp.plane_distance = 30;
-	data->disp.z_mod = 1.0;
+	data->disp.x_offset = 600;
+	data->disp.y_offset = 300;
+	data->disp.plane_distance = 5;
+	data->disp.z_mod = 1;
 	return (data);
 }
 

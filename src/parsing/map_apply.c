@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 05:36:23 by angsanch          #+#    #+#             */
-/*   Updated: 2024/10/30 04:34:39 by angsanch         ###   ########.fr       */
+/*   Updated: 2025/04/22 06:35:46 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,10 @@ static int	parse_node(t_node *node, size_t x, size_t y, char *values)
 {
 	size_t	z_len;
 
-	node->x = x * 100;
-	node->y = y * 100;
+	node->x = x;
+	node->y = y;
 	node->z = my_getnbr(values);
 	z_len = my_intlen(node->z);
-	node->z *= 5;
 	if (my_strncmp(values + z_len, ",0x", 3) == 0)
 	{
 		node->color.value = \
