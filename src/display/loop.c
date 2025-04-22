@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 01:17:26 by angsanch          #+#    #+#             */
-/*   Updated: 2025/04/22 08:21:29 by angsanch         ###   ########.fr       */
+/*   Updated: 2025/04/22 09:39:43 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	draw_connection(t_con *con, t_engine *e)
 
 	d = e->data;
 	if (con->a >= d->web->nodes || con->b >= d->web->nodes)
-		return;
+		return ;
 	n[0] = &d->web->node[con->a];
 	n[1] = &d->web->node[con->b];
 	engine_draw_line(e, process_node(n[0], &d->disp),

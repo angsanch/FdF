@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 14:06:59 by angsanch          #+#    #+#             */
-/*   Updated: 2025/04/22 05:00:44 by angsanch         ###   ########.fr       */
+/*   Updated: 2025/04/22 08:59:03 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,6 @@ t_web	*web_create(size_t nodes);
 void	web_destroy(t_web *w);
 
 void	base_loop(t_hkind kind, t_hdata *data, void *param);
+void	perspective(t_hkind kind, t_hdata *data, void *param);
 
 #endif
