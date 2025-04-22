@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 14:06:59 by angsanch          #+#    #+#             */
-/*   Updated: 2025/04/22 02:28:35 by angsanch         ###   ########.fr       */
+/*   Updated: 2025/04/22 05:00:44 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,22 @@ typedef struct web
 	size_t	changes;
 }	t_web;
 
+typedef struct display_data
+{
+	int32_t		x_offset;
+	int32_t		y_offset;
+	double		z_mod;
+	uint32_t	plane_distance;
+}	t_display;
+
 typedef struct data_container
 {
-	uint32_t	mx;
-	uint32_t	my;
+	t_display	disp;
+	t_web		*web;
 }	t_data;
+
+t_data	*create_data(char *path);
+void	destroy_data(t_data *data);
 
 t_web	*map_to_web(char *path);
 int		apply_map_lines(t_web *web, t_list *lines, size_t width);

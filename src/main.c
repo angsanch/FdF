@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 14:06:28 by angsanch          #+#    #+#             */
-/*   Updated: 2025/04/22 02:30:42 by angsanch         ###   ########.fr       */
+/*   Updated: 2025/04/22 04:59:37 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,34 +23,21 @@ static void	close_on_esc(t_hkind kind, t_hdata *data, void *param)
 		engine_close(e);
 }
 
-static void	new_hook_res(t_hkind kind, t_hdata *data, void *param)
-{
-	t_engine *e = param;
-	t_data *d = e->data;
-
-	(void)kind;
-	(void)data;
-	(void)param;
-	if (data->kind & CURSOR) {
-		printf("%f %f %f %f\n", data->mouse.x, data->mouse.y, data->pmouse.x, data->pmouse.y);
-		d->mx = data->mouse.x;
-		d->my = data->mouse.y;
-	}
-	if (data->kind & MOUSE)
-		printf("%d %d %d\n", data->mouse_press.button, data->mouse_press.modifier_key, data->mouse_press.action);
-	//printf("%u %u\n", e->width, e->height);
-}
-
 int	main(int argc, char **argv)
 {
-	(void)argc;
-	(void)argv;
-	t_engine	*e = engine_init(1200, 600, "hello world");
-	t_data		*d = my_calloc(1, sizeof(t_data));
+	t_engine	*e;
+	t_data		*d;
 
-	engine_add_data(e, d, free);
+	if (argc != 2)
+		return (report_error("Exactly 1 parameter is expected.\n", 84));
+	d = create_data(argv[1]);
+	if (d == NULL)
+		return (report_error("Could not read map.\n", 84));
+	e = engine_init(1200, 600, "FDF by angsanch");
+	if (e == NULL)
+		return (report_error("Could not initialize window.\n", 84));
+	engine_add_data(e, d, (void *)&destroy_data);
 	engine_hook(e, hinternal_create(LOOP, base_loop, e, NULL));
-	engine_hook(e, hinternal_create(MOUSE | CURSOR, new_hook_res, e, NULL));
 	engine_hook(e, hinternal_create(KEY, close_on_esc, e, NULL));
 	mlx_loop(e->window);
 	engine_stop(e);

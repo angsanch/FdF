@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loop.c                                             :+:      :+:    :+:   */
+/*   data.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angsanch <angsanch@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/22 01:17:26 by angsanch          #+#    #+#             */
-/*   Updated: 2025/04/22 05:00:08 by angsanch         ###   ########.fr       */
+/*   Created: 2025/04/22 04:41:53 by angsanch          #+#    #+#             */
+/*   Updated: 2025/04/22 04:47:46 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	base_loop(t_hkind kind, t_hdata *data, void *param)
+t_data	*create_data(char *path)
 {
-	t_engine	*e;
-	t_data		*d;
+	t_data	*data;
 
-	(void)data;
-	e = param;
-	d = e->data;
-	(void)d;
-	if (!(kind & LOOP))
-		return ;
-	engine_background(e,
-		(union u_color){.red = 0, .green = 0, .blue = 0, .alpha = 0xff});
+	data = my_calloc(1, sizeof(t_data));
+	if (data == NULL)
+		return (NULL);
+	data->web = map_to_web(path);
+	if (data->web == NULL)
+	{
+		return (NULL);
+	}
+	data->disp.plane_distance = 30;
+	data->disp.z_mod = 1.0;
+	return (data);
 }
 
-	/*engine_draw_line(e, (t_point){0, 0, {0}},
-		(t_point){d->mx, d->my, {0xffffffff}});*/
+void	destroy_data(t_data *data)
+{
+	if (data == NULL)
+		return ;
+	web_destroy(data->web);
+	free(data);
+}

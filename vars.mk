@@ -8,6 +8,7 @@ C_FILES	=src/main.c \
 			src/parsing/map_apply.c \
 			src/tools/node.c \
 			src/tools/web.c \
+			src/tools/data.c \
 			src/engine/engine_tools.c \
 			src/engine/hook_internals.c \
 			src/engine/hooks.c \
