@@ -1,4 +1,4 @@
-CC		=gcc
+CC		=cc
 LIBS	=libft/libft.a minilibx/build/libmlx42.a
 LINKS	=-ldl -lglfw -pthread -lm
 CFLAGS	=-Wall -Werror -Wextra -Iinclude
