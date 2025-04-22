@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 03:16:46 by angsanch          #+#    #+#             */
-/*   Updated: 2025/04/22 00:01:15 by angsanch         ###   ########.fr       */
+/*   Updated: 2025/04/22 02:19:12 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,15 @@ typedef struct engine
 	t_list		hook;
 	uint32_t	width;
 	uint32_t	height;
+	void		*data;
+	void		(*data_destroy)(void *);
 }	t_engine;
 
 t_engine	*engine_init(size_t width, size_t height, char *title);
 void		engine_stop(t_engine *engine);
 void		engine_close(t_engine *engine);
+void		engine_add_data(t_engine *engine, void *data,
+				void (*destroy)(void *));
 
 void		engine_background(t_engine *engine, union u_color color);
 void		engine_draw_line(t_engine *engine, t_point a, t_point b);

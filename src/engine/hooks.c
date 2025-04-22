@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 04:31:41 by angsanch          #+#    #+#             */
-/*   Updated: 2024/11/26 14:07:52 by angsanch         ###   ########.fr       */
+/*   Updated: 2025/04/22 02:02:31 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	engine_mlx_resize(int32_t width, int32_t height, void *param)
 	hd.height = height;
 	engine->width = width;
 	engine->height = height;
+	mlx_resize_image(engine->image, engine->width, engine->height);
 	hd.kind = RESIZE;
 	run_hooks(engine, &hd);
 }

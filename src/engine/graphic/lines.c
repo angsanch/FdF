@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 23:32:16 by angsanch          #+#    #+#             */
-/*   Updated: 2025/04/22 01:13:44 by angsanch         ###   ########.fr       */
+/*   Updated: 2025/04/22 02:26:01 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static void	draw_vertical(t_engine *engine, t_point *a, t_point *b)
 		y = 0;
 	while (y < b->y && (uint32_t)y < engine->height)
 	{
-		printf("%3fx%3d\n", (y - line.y) / line.x, y);
 		place_pixel(engine, (y - line.y) / line.x, y, (union u_color){
 			.red = my_map(y, (t_doublepair){a->y, b->y},
 				(t_doublepair){a->color.red, b->color.red}),
