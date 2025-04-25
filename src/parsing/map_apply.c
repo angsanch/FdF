@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 05:36:23 by angsanch          #+#    #+#             */
-/*   Updated: 2025/04/22 06:35:46 by angsanch         ###   ########.fr       */
+/*   Updated: 2025/04/25 02:11:48 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static int	create_connections(t_web *web, size_t width, size_t height)
 			if (x + 1 < width)
 				if (!add_connection(web, current, current + 1))
 					return (0);
-			if (y + 1 < width)
+			if (y + 1 < height)
 				if (!add_connection(web, current, current + width))
 					return (0);
 			current ++;
