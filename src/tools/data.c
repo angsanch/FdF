@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 04:41:53 by angsanch          #+#    #+#             */
-/*   Updated: 2025/04/22 07:23:52 by angsanch         ###   ########.fr       */
+/*   Updated: 2025/04/27 18:35:19 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_data	*create_data(char *path)
 	data->web = map_to_web(path);
 	if (data->web == NULL)
 	{
+		destroy_data(data);
 		return (NULL);
 	}
 	data->disp.x_offset = 600;
