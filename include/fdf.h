@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 14:06:59 by angsanch          #+#    #+#             */
-/*   Updated: 2025/10/28 03:26:05 by angsanch         ###   ########.fr       */
+/*   Updated: 2025/10/28 21:38:09 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
 
 typedef struct node
 {
-	ssize_t			x;
-	ssize_t			y;
-	ssize_t			z;
+	double			x;
+	double			y;
+	double			z;
 	union u_color	color;
 }	t_node;
 
@@ -40,7 +40,6 @@ typedef struct web
 	size_t	nodes;
 	t_node	*node;
 	t_list	connection;
-	size_t	changes;
 }	t_web;
 
 typedef struct display_data
@@ -81,5 +80,7 @@ void	base_loop(t_hkind kind, t_hdata *data, void *param);
 void	perspective_keys(t_hkind kind, t_hdata *data, void *param);
 void	perspective_mouse(t_hkind kind, t_hdata *data, void *param);
 void	modifiers(t_hkind kind, t_hdata *data, void *param);
+
+void	rotation(t_data *data, double dx, double dy);
 
 #endif

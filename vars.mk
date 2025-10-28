@@ -17,6 +17,7 @@ C_FILES	=src/main.c \
 			src/engine/graphic/lines.c \
 			src/display/loop.c \
 			src/display/hooks.c \
+			src/display/rotation.c \
 
 libft/libft.a:
 	make -C libft

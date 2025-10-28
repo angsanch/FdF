@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 08:38:15 by angsanch          #+#    #+#             */
-/*   Updated: 2025/10/28 03:38:58 by angsanch         ###   ########.fr       */
+/*   Updated: 2025/10/28 21:15:58 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,19 @@ void	perspective_keys(t_hkind kind, t_hdata *data, void *param)
 	}
 }
 
+static void	traslation(t_data *data, double dx, double dy)
+{
+	data->disp.x_offset += dx;
+	data->disp.y_offset += dy;
+}
+
 void	perspective_mouse(t_hkind __attribute__((unused))kind, t_hdata *data,
 	void *param)
 {
-	t_engine	*e;
 	t_data		*d;
+	double		dmouse[2];
 
-	e = param;
-	d = e->data;
+	d = ((t_engine *)param)->data;
 	if (data->kind == SCROLL)
 	{
 		if (d->mod.ctrl)
@@ -83,10 +88,11 @@ void	perspective_mouse(t_hkind __attribute__((unused))kind, t_hdata *data,
 	}
 	if (data->kind == CURSOR)
 	{
+		dmouse[0] = data->mouse.x - data->pmouse.x;
+		dmouse[1] = data->mouse.y - data->pmouse.y;
 		if (d->mod.lmb)
-		{
-			d->disp.x_offset += data->mouse.x - data->pmouse.x;
-			d->disp.y_offset += data->mouse.y - data->pmouse.y;
-		}
+			traslation(d, dmouse[0], dmouse[1]);
+		if (d->mod.rmb)
+			rotation(d, dmouse[0], dmouse[1]);
 	}
 }
