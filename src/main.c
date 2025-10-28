@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 14:06:28 by angsanch          #+#    #+#             */
-/*   Updated: 2025/04/22 09:00:09 by angsanch         ###   ########.fr       */
+/*   Updated: 2025/10/28 03:27:00 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ int	main(int argc, char **argv)
 	engine_add_data(e, d, (void *)&destroy_data);
 	engine_hook(e, hinternal_create(LOOP, base_loop, e, NULL));
 	engine_hook(e, hinternal_create(KEY, close_on_esc, e, NULL));
-	engine_hook(e, hinternal_create(KEY | SCROLL, perspective, e, NULL));
+	engine_hook(e, hinternal_create(KEY | MOUSE, modifiers, e, NULL));
+	engine_hook(e, hinternal_create(KEY, perspective_keys, e, NULL));
+	engine_hook(e, hinternal_create(SCROLL | CURSOR, perspective_mouse, e,
+			NULL));
 	mlx_loop(e->window);
 	engine_stop(e);
 	return (0);

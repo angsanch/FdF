@@ -6,13 +6,37 @@
 /*   By: angsanch <angsanch@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 08:38:15 by angsanch          #+#    #+#             */
-/*   Updated: 2025/04/22 09:40:08 by angsanch         ###   ########.fr       */
+/*   Updated: 2025/10/28 03:38:58 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	perspective(t_hkind kind, t_hdata *data, void *param)
+void	modifiers(t_hkind kind, t_hdata *data, void *param)
+{
+	t_engine	*e;
+	t_data		*d;
+
+	(void)kind;
+	e = param;
+	d = e->data;
+	if (data->kind == KEY)
+	{
+		if (data->key_data.key == MLX_KEY_LEFT_CONTROL)
+			d->mod.ctrl = data->key_data.action == MLX_PRESS;
+		if (data->key_data.key == MLX_KEY_LEFT_SHIFT)
+			d->mod.shift = data->key_data.action == MLX_PRESS;
+	}
+	else if (data->kind == MOUSE)
+	{
+		if (data->mouse_press.button == MLX_MOUSE_BUTTON_LEFT)
+			d->mod.lmb = data->mouse_press.action == MLX_PRESS;
+		if (data->mouse_press.button == MLX_MOUSE_BUTTON_RIGHT)
+			d->mod.rmb = data->mouse_press.action == MLX_PRESS;
+	}
+}
+
+void	perspective_keys(t_hkind kind, t_hdata *data, void *param)
 {
 	t_engine	*e;
 	t_data		*d;
@@ -33,8 +57,36 @@ void	perspective(t_hkind kind, t_hdata *data, void *param)
 		if (data->key_data.key == MLX_KEY_Z)
 			d->disp.plane_distance ++;
 		if (data->key_data.key == MLX_KEY_C && d->disp.plane_distance > 1)
-			d->disp.plane_distance -= 1;
+			d->disp.plane_distance --;
 	}
+}
+
+void	perspective_mouse(t_hkind __attribute__((unused))kind, t_hdata *data,
+	void *param)
+{
+	t_engine	*e;
+	t_data		*d;
+
+	e = param;
+	d = e->data;
 	if (data->kind == SCROLL)
-		d->disp.z_mod += data->ydelta / 10;
+	{
+		if (d->mod.ctrl)
+		{
+			if (data->ydelta > 0)
+				d->disp.plane_distance ++;
+			else if (data->ydelta < 0 && d->disp.plane_distance > 1)
+				d->disp.plane_distance --;
+		}
+		else
+			d->disp.z_mod += data->ydelta / 10;
+	}
+	if (data->kind == CURSOR)
+	{
+		if (d->mod.lmb)
+		{
+			d->disp.x_offset += data->mouse.x - data->pmouse.x;
+			d->disp.y_offset += data->mouse.y - data->pmouse.y;
+		}
+	}
 }

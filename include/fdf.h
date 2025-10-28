@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 14:06:59 by angsanch          #+#    #+#             */
-/*   Updated: 2025/04/22 08:59:03 by angsanch         ###   ########.fr       */
+/*   Updated: 2025/10/28 03:26:05 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,18 @@ typedef struct display_data
 	uint32_t	plane_distance;
 }	t_display;
 
+typedef struct modifiers_status
+{
+	bool	ctrl;
+	bool	shift;
+	bool	rmb;
+	bool	lmb;
+}	t_mod;
+
 typedef struct data_container
 {
 	t_display	disp;
+	t_mod		mod;
 	t_web		*web;
 }	t_data;
 
@@ -69,6 +78,8 @@ t_web	*web_create(size_t nodes);
 void	web_destroy(t_web *w);
 
 void	base_loop(t_hkind kind, t_hdata *data, void *param);
-void	perspective(t_hkind kind, t_hdata *data, void *param);
+void	perspective_keys(t_hkind kind, t_hdata *data, void *param);
+void	perspective_mouse(t_hkind kind, t_hdata *data, void *param);
+void	modifiers(t_hkind kind, t_hdata *data, void *param);
 
 #endif
