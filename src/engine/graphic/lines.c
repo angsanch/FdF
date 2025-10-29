@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 23:32:16 by angsanch          #+#    #+#             */
-/*   Updated: 2025/04/22 02:26:01 by angsanch         ###   ########.fr       */
+/*   Updated: 2025/10/29 02:21:01 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,18 @@ static void	draw_vertical(t_engine *engine, t_point *a, t_point *b)
 {
 	struct s_pos2d	line;
 	int				y;
+	int				x;
 
 	calculate_line(a, b, &line);
 	y = a->y;
 	if (y < 0)
 		y = 0;
-	while (y < b->y && (uint32_t)y < engine->height)
+	while (y <= b->y && (uint32_t)y < engine->height)
 	{
-		place_pixel(engine, (y - line.y) / line.x, y, (union u_color){
+		x = (y - line.y) / line.x;
+		if (b->x - a->x == 0)
+			x = a->x;
+		place_pixel(engine, x, y, (union u_color){
 			.red = my_map(y, (t_doublepair){a->y, b->y},
 				(t_doublepair){a->color.red, b->color.red}),
 			.green = my_map(y, (t_doublepair){a->y, b->y},
@@ -59,7 +63,7 @@ static void	draw_horizontal(t_engine *engine, t_point *a, t_point *b)
 	x = a->x;
 	if (x < 0)
 		x = 0;
-	while (x < b->x && (uint32_t)x < engine->width)
+	while (x <= b->x && (uint32_t)x < engine->width)
 	{
 		place_pixel(engine, x, (line.x * x) + line.y, (union u_color){
 			.red = my_map(x, (t_doublepair){a->x, b->x},
