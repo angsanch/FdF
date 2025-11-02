@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 14:06:59 by angsanch          #+#    #+#             */
-/*   Updated: 2025/10/28 21:38:09 by angsanch         ###   ########.fr       */
+/*   Updated: 2025/11/02 20:48:07 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ typedef struct web
 
 typedef struct display_data
 {
+	t_node		xaxis;
+	t_node		yaxis;
+	t_node		zaxis;
 	int32_t		x_offset;
 	int32_t		y_offset;
 	double		z_mod;
@@ -81,6 +84,7 @@ void	perspective_keys(t_hkind kind, t_hdata *data, void *param);
 void	perspective_mouse(t_hkind kind, t_hdata *data, void *param);
 void	modifiers(t_hkind kind, t_hdata *data, void *param);
 
+void	rotate(t_display *disp, double yz, double zx, double xy);
 void	rotation(t_data *data, double dx, double dy);
 
 #endif

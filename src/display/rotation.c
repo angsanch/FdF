@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 21:16:41 by angsanch          #+#    #+#             */
-/*   Updated: 2025/10/29 00:57:54 by angsanch         ###   ########.fr       */
+/*   Updated: 2025/11/02 20:49:13 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,17 @@ static void	rotate_point(const double *mat, t_node *node)
 	node->z = z;
 }
 
-void	rotation(t_data *data, double dx, double dy)
+void	rotate(t_display *disp, double yz, double zx, double xy)
 {
-	size_t	i;
-	t_node	*node;
 	double	mat[9];
 
-	i = 0;
-	build_matrix(mat, dx / 360, dy / 360, 0);
-	while (i < data->web->nodes)
-	{
-		node = &data->web->node[i];
-		rotate_point(mat, node);
-		i ++;
-	}
+	build_matrix(mat, yz, zx, xy);
+	rotate_point(mat, &disp->xaxis);
+	rotate_point(mat, &disp->yaxis);
+	rotate_point(mat, &disp->zaxis);
+}
+
+void	rotation(t_data *data, double dx, double dy)
+{
+	rotate(&data->disp, dy / 180, -dx / 180, 0);
 }

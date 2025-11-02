@@ -6,22 +6,22 @@
 /*   By: angsanch <angsanch@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 01:17:26 by angsanch          #+#    #+#             */
-/*   Updated: 2025/04/23 17:34:00 by angsanch         ###   ########.fr       */
+/*   Updated: 2025/11/02 20:38:58 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static t_point	process_node(t_node *n, t_display *d)
+static t_point	process_node(t_node *p, t_display *d)
 {
-	const double	cos30 = 0.866;
-	const double	sin30 = 0.5;
+	t_node	n;
 
+	n.x = (p->x * d->xaxis.x) + (p->y * d->xaxis.y) + (p->z * d->xaxis.z);
+	n.z = (p->x * d->zaxis.x) + (p->y * d->zaxis.y) + (p->z * d->zaxis.z);
 	return ((t_point){
-		(cos30 * n->x - cos30 * n->y) * d->plane_distance + d->x_offset,
-		(sin30 * n->x + sin30 * n->y - n->z * d->z_mod) * \
-			d->plane_distance + d->y_offset,
-		n->color,
+		n.x * d->plane_distance + d->x_offset,
+		- n.z * d->plane_distance + d->y_offset,
+		p->color,
 	});
 }
 
