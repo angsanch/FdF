@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 21:16:41 by angsanch          #+#    #+#             */
-/*   Updated: 2025/11/02 20:49:13 by angsanch         ###   ########.fr       */
+/*   Updated: 2025/11/03 01:40:41 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,5 @@ void	rotate(t_display *disp, double yz, double zx, double xy)
 
 void	rotation(t_data *data, double dx, double dy)
 {
-	rotate(&data->disp, dy / 180, -dx / 180, 0);
+	rotate(&data->disp, dy / 180, -dx / 180, dx / 180);
 }

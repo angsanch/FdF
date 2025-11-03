@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 01:17:26 by angsanch          #+#    #+#             */
-/*   Updated: 2025/11/02 20:38:58 by angsanch         ###   ########.fr       */
+/*   Updated: 2025/11/03 01:26:31 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ static t_point	process_node(t_node *p, t_display *d)
 {
 	t_node	n;
 
-	n.x = (p->x * d->xaxis.x) + (p->y * d->xaxis.y) + (p->z * d->xaxis.z);
-	n.z = (p->x * d->zaxis.x) + (p->y * d->zaxis.y) + (p->z * d->zaxis.z);
+	n.x = (p->x * d->xaxis.x) + (p->y * d->xaxis.y) + \
+		(p->z * d->xaxis.z * d->z_mod);
+	n.z = (p->x * d->zaxis.x) + (p->y * d->zaxis.y) + \
+		(p->z * d->zaxis.z * d->z_mod);
 	return ((t_point){
 		n.x * d->plane_distance + d->x_offset,
 		- n.z * d->plane_distance + d->y_offset,
