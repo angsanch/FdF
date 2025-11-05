@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 14:06:59 by angsanch          #+#    #+#             */
-/*   Updated: 2025/11/02 20:48:07 by angsanch         ###   ########.fr       */
+/*   Updated: 2025/11/06 00:38:24 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "my_printf.h"
 # include "engine.h"
 
+# define _USE_MATH_DEFINES
 # include <math.h>
 # include <stdint.h>
 
@@ -47,8 +48,8 @@ typedef struct display_data
 	t_node		xaxis;
 	t_node		yaxis;
 	t_node		zaxis;
-	int32_t		x_offset;
-	int32_t		y_offset;
+	t_node		offset;
+	t_node		center;
 	double		z_mod;
 	uint32_t	plane_distance;
 }	t_display;

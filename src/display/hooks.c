@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 08:38:15 by angsanch          #+#    #+#             */
-/*   Updated: 2025/10/28 21:15:58 by angsanch         ###   ########.fr       */
+/*   Updated: 2025/11/05 22:49:39 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ void	modifiers(t_hkind kind, t_hdata *data, void *param)
 	}
 }
 
+static void	traslation(t_data *data, double dx, double dy)
+{
+	data->disp.offset.x += dx;
+	data->disp.offset.y += dy;
+}
+
 void	perspective_keys(t_hkind kind, t_hdata *data, void *param)
 {
 	t_engine	*e;
@@ -47,24 +53,18 @@ void	perspective_keys(t_hkind kind, t_hdata *data, void *param)
 	if (data->kind == KEY && data->key_data.action == MLX_PRESS)
 	{
 		if (data->key_data.key == MLX_KEY_UP)
-			d->disp.y_offset += 10;
+			traslation(d, 0, 10);
 		if (data->key_data.key == MLX_KEY_DOWN)
-			d->disp.y_offset -= 10;
+			traslation(d, 0, -10);
 		if (data->key_data.key == MLX_KEY_LEFT)
-			d->disp.x_offset += 10;
+			traslation(d, 10, 0);
 		if (data->key_data.key == MLX_KEY_RIGHT)
-			d->disp.x_offset -= 10;
+			traslation(d, -10, 0);
 		if (data->key_data.key == MLX_KEY_Z)
 			d->disp.plane_distance ++;
 		if (data->key_data.key == MLX_KEY_C && d->disp.plane_distance > 1)
 			d->disp.plane_distance --;
 	}
-}
-
-static void	traslation(t_data *data, double dx, double dy)
-{
-	data->disp.x_offset += dx;
-	data->disp.y_offset += dy;
 }
 
 void	perspective_mouse(t_hkind __attribute__((unused))kind, t_hdata *data,
