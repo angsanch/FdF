@@ -40,6 +40,9 @@ Only the path to the file containing the map is necessary.
 - `C` -> Zoom out
 - Arrow keys -> Move the model
 - Mouse scroll -> Change Z multiplier (altitude scaling)
+- Mouse scroll + ctrl -> Zoom
+- Left mouse button -> Drag
+- Right mouse button -> Rotate
 
 ### Arguments
 
